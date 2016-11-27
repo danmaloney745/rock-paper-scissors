@@ -9,7 +9,7 @@ let playerChoice = function() {
 }
 
 let computerChoice = function() {
-    let compInput = Math.round(Math.random()* 3) + 1;
+    let compInput = Math.round(Math.random()* 2) + 0;
     compInput = gameArray[compInput];
     console.log(compInput);
     return compInput;

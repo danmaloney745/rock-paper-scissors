@@ -25,22 +25,31 @@ function gameManager(computerChoice, playerChoice) {
     }
     else if(computerChoice === 'Rock' && playerChoice === 'Scissors') {
         console.log('Computer Wins');
+        compScore++;
     }
     else if(playerChoice === 'Rock' && computerChoice === 'Scissors') {
         console.log('Player Wins');
+        playerScore++;
     }
     else if(computerChoice === 'Paper' && playerChoice === 'Rock') {
         console.log('Computer Wins');
+        compScore++;
     }
     else if(playerChoice === 'Paper' && computerChoice === 'Rock') {
         console.log('Player WIns');
+        playerScore++;
     }
     else if(computerChoice === "Scissors" && computerChoice === "Paper"){
         console.log("Computer Wins");
+        compScore++;
     }
     else if(playerChoice === "Scissors" && computerChoice === "Paper") {
         console.log("Player Wins");
+        playerScore++;
     }
+
+    console.log(compScore);
+    console.log(playerScore);
 }
 
 gameManager(computerChoice, playerChoice);

@@ -16,7 +16,7 @@ $(function(){
 
     //Function that randomises and returns the computers choice
     function computerChoice() {
-        let compInput = Math.round(Math.random()* 2) + 0;
+        let compInput = Math.round(Math.random()* 2) + 0;   /*random num between 0 and 2*/
         compInput = gameArray[compInput];
         return compInput;
     }
@@ -32,27 +32,27 @@ $(function(){
         }
         else if(computer === 'Rock' && player === 'Scissors') {
             //print to the UI the winner and score
-            $("#comp-count").html(parseInt($("#comp-count").html())+1);
+            $("#comp-count").html(parseInt($("#comp-count").html()) + 1);
             $("#who-wins").html("Computer Wins!");
         }
         else if(player === 'Rock' && computer === 'Scissors') {
-            $("#player-count").html(parseInt($("#player-count").html())+1);
+            $("#player-count").html(parseInt($("#player-count").html()) + 1);
             $("#who-wins").html("Player Wins!");
         }
         else if(computer === 'Paper' && player === 'Rock') {
-            $("#comp-count").html(parseInt($("#comp-count").html())+1);
+            $("#comp-count").html(parseInt($("#comp-count").html()) + 1);
             $("#who-wins").html("Computer Wins!");
         }
         else if(player === 'Paper' && computer === 'Rock') {
-            $("#player-count").html(parseInt($("#player-count").html())+1);
+            $("#player-count").html(parseInt($("#player-count").html()) + 1);
             $("#who-wins").html("Player Wins!");
         }
         else if(computer === "Scissors" && player === "Paper"){
-            $("#comp-count").html(parseInt($("#comp-count").html())+1);
+            $("#comp-count").html(parseInt($("#comp-count").html()) + 1);
             $("#who-wins").html("Computer Wins!");
         }
         else if(player === "Scissors" && computer === "Paper") {
-            $("#player-count").html(parseInt($("#player-count").html())+1);
+            $("#player-count").html(parseInt($("#player-count").html()) + 1);
             $("#who-wins").html("Player Wins!");
         }
     }
@@ -62,4 +62,6 @@ $(function(){
 });
 
 
+//References
 /*http://stackoverflow.com/questions/1687936/how-to-add-an-increment1-to-the-value-of-an-element-with-jquery*/
+/*http://stackoverflow.com/questions/8378870/generating-unique-random-numbers-integers-between-0-and-x*/

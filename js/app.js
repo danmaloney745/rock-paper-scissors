@@ -1,29 +1,18 @@
 $(function(){
     let gameArray = ['Rock', 'Paper', 'Scissors'];
-    let playerScore = 0;
-    let compScore = 0;
-    let playerChoice;
 
-    var buttons = document.querySelectorAll('.myButton');
-    for (var i = 0; i < buttons.length; i++) {
-        var button = buttons[i];
-        button.addEventListener('click' , function(event) {
-            var playerChooses = this.id.substring(0, this.id.length);
-            gameManager(playerChooses);
-        })
-    }
+    //Function that gets the button clicked and stores it as the players choice
+    function playerChoice(){
+        var buttons = document.querySelectorAll('.myButton');
+        for (var i = 0; i < buttons.length; i++) {
+            var button = buttons[i];
+            button.addEventListener('click' , function(event) {
+                var playerChooses = this.id.substring(0, this.id.length);
+                compareResults(playerChooses);
+            })
+        }
 
-    // function playerChoice(){
-    //     var buttons = document.querySelectorAll('.myButton');
-    //     for (var i = 0; i < buttons.length; i++) {
-    //         var button = buttons[i];
-    //         button.addEventListener('click' , function(event) {
-    //             var playerChooses = this.id.substring(0, this.id.length);
-    //             gameManager(playerChooses);
-    //         })
-    //     }
-
-    // };
+    };
 
     //Function that randomises and returns the computers choice
     function computerChoice() {
@@ -33,39 +22,44 @@ $(function(){
     }
 
     //Function that calls the two choice functions and compares the values and ouput who wins.
-    function gameManager(playerChoice) {
+    function compareResults(playerChoice) {
         let computer = computerChoice();
         let player = playerChoice;
-        
-        console.log(computer);
-        console.log(player);
 
-        if(computer === playerChoice) {
-            console.log("The game was a draw");
+        //Comparisson if/else if  to determine the winner
+        if(computer === player) {
+            $("#who-wins").html("The game was a tie!");
         }
         else if(computer === 'Rock' && player === 'Scissors') {
-            console.log('Computer Wins');
-            compScore++;
+            //print to the UI the winner and score
+            $("#comp-count").html(parseInt($("#comp-count").html())+1);
+            $("#who-wins").html("Computer Wins!");
         }
         else if(player === 'Rock' && computer === 'Scissors') {
-            console.log('Player Wins');
-            playerScore++;
+            $("#player-count").html(parseInt($("#player-count").html())+1);
+            $("#who-wins").html("Player Wins!");
         }
         else if(computer === 'Paper' && player === 'Rock') {
-            console.log('Computer Wins');
-            compScore++;
+            $("#comp-count").html(parseInt($("#comp-count").html())+1);
+            $("#who-wins").html("Computer Wins!");
         }
         else if(player === 'Paper' && computer === 'Rock') {
-            console.log('Player WIns');
-            playerScore++;
+            $("#player-count").html(parseInt($("#player-count").html())+1);
+            $("#who-wins").html("Player Wins!");
         }
         else if(computer === "Scissors" && player === "Paper"){
-            console.log("Computer Wins");
-            compScore++;
+            $("#comp-count").html(parseInt($("#comp-count").html())+1);
+            $("#who-wins").html("Computer Wins!");
         }
         else if(player === "Scissors" && computer === "Paper") {
-            console.log("Player Wins");
-            playerScore++;
+            $("#player-count").html(parseInt($("#player-count").html())+1);
+            $("#who-wins").html("Player Wins!");
         }
     }
+
+    //Run the Application
+    playerChoice();    
 });
+
+
+/*http://stackoverflow.com/questions/1687936/how-to-add-an-increment1-to-the-value-of-an-element-with-jquery*/

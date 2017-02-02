@@ -1,65 +1,59 @@
-$(function(){
-    let gameArray = ['Rock', 'Paper', 'Scissors'];
+class RockPaperScissors {
+    constructor() {
+        this.moves = ["Rock", "Paper", "Scissors"];
+
+        this.gameMatrix = [
+            ["draw", "player", "computer"],
+            ["computer", "draw", "player"],
+            ["player", "computer", "draw"]
+        ];
+
+        this.moveButtons = $(".myButton");
+        this.playerChooses;
+        this.computerChooses;
+
+        this.addEventListeners();
+    }
+
+    addEventListeners() {
+        this.moveButtons.each((i, myButton) => $(myButton).click(this.runGame.bind(this)));
+    }
 
     //Function that gets the button clicked and stores it as the players choice
-    function playerChoice(){
-        var buttons = document.querySelectorAll('.myButton');
-        for (var i = 0; i < buttons.length; i++) {
-            var button = buttons[i];
-            button.addEventListener('click' , function(event) {
-                var playerChooses = this.id.substring(0, this.id.length);
-                compareResults(playerChooses);
-            })
-        }
-
+    playerChoice(){
+        this.playerChooses = this.moves.indexOf(event.target.id);
     };
 
     //Function that randomises and returns the computers choice
-    function computerChoice() {
-        let compInput = Math.round(Math.random()* 2) + 0;   /*random num between 0 and 2*/
-        compInput = gameArray[compInput];
-        return compInput;
+    computerChoice() {
+        this.computerChooses = Math.floor(Math.random()* 3);   /*random num between 0 and 3*/
     }
 
+    getWinner() {
+        this.winner = this.gameMatrix[this.computerChooses][this.playerChooses];
+    }
     //Function that calls the two choice functions and compares the values and ouput who wins.
-    function compareResults(playerChoice) {
-        let computer = computerChoice();
-        let player = playerChoice;
-
+    compareResults() {
         //Comparisson if/else if  to determine the winner
-        if(computer === player) {
+        if(this.computerChooses === this.playerChooses) {
             $("#who-wins").html("The game was a tie!");
         }
-        else if(computer === 'Rock' && player === 'Scissors') {
+        else {
             //print to the UI the winner and score
+            $("#who-wins").html(`${this.winner} Wins!`);
             $("#comp-count").html(parseInt($("#comp-count").html()) + 1);
-            $("#who-wins").html("Computer Wins!");
-        }
-        else if(player === 'Rock' && computer === 'Scissors') {
-            $("#player-count").html(parseInt($("#player-count").html()) + 1);
-            $("#who-wins").html("Player Wins!");
-        }
-        else if(computer === 'Paper' && player === 'Rock') {
-            $("#comp-count").html(parseInt($("#comp-count").html()) + 1);
-            $("#who-wins").html("Computer Wins!");
-        }
-        else if(player === 'Paper' && computer === 'Rock') {
-            $("#player-count").html(parseInt($("#player-count").html()) + 1);
-            $("#who-wins").html("Player Wins!");
-        }
-        else if(computer === "Scissors" && player === "Paper"){
-            $("#comp-count").html(parseInt($("#comp-count").html()) + 1);
-            $("#who-wins").html("Computer Wins!");
-        }
-        else if(player === "Scissors" && computer === "Paper") {
-            $("#player-count").html(parseInt($("#player-count").html()) + 1);
-            $("#who-wins").html("Player Wins!");
         }
     }
 
-    //Run the Application
-    playerChoice();    
-});
+    runGame() {
+        this.playerChoice();
+        this.computerChoice();
+        this.getWinner();
+        this.compareResults();
+    }
+}
+
+$(() => window.rps = new RockPaperScissors());
 
 
 //References

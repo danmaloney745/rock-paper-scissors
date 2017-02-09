@@ -1,18 +1,21 @@
-$(function(){
+$(document).ready(function(){
     let gameArray = ['Rock', 'Paper', 'Scissors'];
 
     //Function that gets the button clicked and stores it as the players choice
-    function playerChoice(){
-        var buttons = document.querySelectorAll('.myButton');
-        for (var i = 0; i < buttons.length; i++) {
-            var button = buttons[i];
-            button.addEventListener('click' , function(event) {
-                var playerChooses = this.id.substring(0, this.id.length);
-                compareResults(playerChooses);
-            })
-        }
+    $("#Rock").click(function() {
+        let playerChooses = this.id.substring(0, this.id.length);
+        compareResults(playerChooses);
+    });
 
-    };
+    $("#Paper").click(function() {
+        let playerChooses = this.id.substring(0, this.id.length);
+        compareResults(playerChooses);
+    });
+
+    $("#Scissors").click(function() {
+        let playerChooses = this.id.substring(0, this.id.length);
+        compareResults(playerChooses);
+    });
 
     //Function that randomises and returns the computers choice
     function computerChoice() {
@@ -25,7 +28,6 @@ $(function(){
     function compareResults(playerChoice) {
         let computer = computerChoice();
         let player = playerChoice;
-
         //Comparisson if/else if  to determine the winner
         if(computer === player) {
             $("#who-wins").html("The game was a tie!");
@@ -57,8 +59,7 @@ $(function(){
         }
     }
 
-    //Run the Application
-    playerChoice();    
+    //Run the Application    
 });
 
 
